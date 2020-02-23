@@ -1,9 +1,17 @@
-from flask import Flask, request, Blueprint, abort
+from flask import Flask, request, Blueprint, abort, url_for
 from flask_restplus import Resource, Api, fields, Model
 import TrainSaveModel as tsm
 import LoadModelPredict as lmp
 
 app = Flask(__name__)
+
+if os.environ.get('VCAP_SERVICES'):
+    @property
+    def specs_url(self):
+        return url_for(self.endpoint('specs'), _external=True, _scheme='https')
+ 
+    Api.specs_url = specs_url
+
 api = Api(app, version='1.0.0', title= 'CFPB Complaint Predictor', description= 'An API to predict the Resolution Outcome of Complaints submitted to the Consumer Financial Protection Bureau (CFPB)')
 dev_ns = api.namespace('devs', description= 'Tools for developers')
 admin_ns = api.namespace('admin', description= 'Tools for admin to interact with models')
