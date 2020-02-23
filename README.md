@@ -1,18 +1,16 @@
 # Predict from Financial Service Complaint Data How a Claim Will Resolve
 
-The Consumer Financial Protection Bureau sends complaints from consumer to companies regarding issues with financial services, which updates daily, and can be retrieved from an API1. These issues range from car financing, to credit card issues, to banking problems. Claims can result in being closed with relief, explanation, non-monetary relief, monetary relief. 
+The Consumer Financial Protection Bureau (CFPB) sends complaints from consumer to companies regarding issues with financial services, which updates daily, and can be retrieved from an API1. These issues range from car financing, to credit card issues, to banking problems. Claims can result in being closed with relief, explanation, non-monetary relief, monetary relief. If one were to estimate the probibility of resolution, finacial firms could use this metric to prioritize their helpdesk task assignment, in turn leading to better customer satisfaction.
 
-An objective of interest  is making a predictive response for complaints still in progress. This could be used in focusing complaint that merit relief first, since there is legitimate compensations to be distributed, and there are significantly less complaints that received relief compared to how many are closed with an explanation. As a secondary objective, a classifier will be made that treats each type of company responses as a separate category. Scikit-learn will be utilized, as well as keras with a tensorflow backend, and a few Natural Language Processing (NLP) libraries to create my pipeline.
+This project utilizes the full dataset provided by the CFPB, multiple preprocessing pipelines, such as data imputation, categorizing columns, and standard scaling, and a Logistic Regression Model to predict weather a consumer is entitled to compensation. The productionalize version of the code hosts on a server using the up-to-date best trained model. When a consumer calls the api, it returns their predicted outcome along with a probility value. The admin who host the server can always make a call to retrain the model, or return the log of all the scores.
 
-The strategy here is to start off by seeing which columns are redundant and which columns have too many missing values, and then remove those columns from the model. A Grid Search Cross Validation Method on a handful of different prediction models to see which model performs best. Models that will be trained through the GridSearch include Random Tree Classifier, Gradient Boosted Tree Classifier, Logistic Regression. From logistic regression and gradient boosted tree classifier, feature importance can be extracted to determine which factors influence the prediction most. 
+Note that the design and model decisions were planned out through a trail error process that is documented at https://github.com/alexretana/Springboard/tree/master/Capstone-Finacial_Products_Complaints.
 
-To continue the investigation, a Deep Neural Network (DNN) model will be built and trained to see if it can out match the classic Machine Learning models. About 30% of the complaints have consumer submitted narrative. Using these text samples, basic NLP techniques will be used to check if using a narrative has more predictive power than the other information. 
-
-After determining which model is best, I will build an updater that will check if new entries have been added and make a prediction for them, as well as to check if incomplete complaints have been resolved and create a score a validation score with them. This is easily possible because the data set has an API that updates everyday.
+At that github repo, you'll see investigation into the data in question, various models tested included deep neural networks and natural language processing.
 
 # API usage
 
-Currently the API is being served from 
+Currently the API is being served from https://cfpbpredictorwebapi.azurewebsites.net/
 
 Following the link provides the swagger documentation.
 
