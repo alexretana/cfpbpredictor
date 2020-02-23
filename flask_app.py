@@ -1,10 +1,12 @@
 from flask import Flask, request, Blueprint, abort, url_for
 from flask_restplus import Resource, Api, fields, Model
+from werkzeug.contrib.fixers import ProxyFix
 import TrainSaveModel as tsm
 import LoadModelPredict as lmp
 import os
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app)
 
 if os.environ.get('VCAP_SERVICES'):
     @property
