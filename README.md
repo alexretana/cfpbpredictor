@@ -10,9 +10,9 @@ At that github repo, you'll see investigation into the data in question, various
 
 # API usage
 
-Currently the API is being served from https://cfpbpredictorwebapi.azurewebsites.net/
+The API was being served from an azure virtual machine. Due to no longer being subscribed, the API has been taken down.
 
-Following the link provides the swagger documentation.
+Prior, it would lead you to the Swagger API documentation page where you could try the follow operations.
 
 There are three operations:
 
