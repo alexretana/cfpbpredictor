@@ -5,5 +5,5 @@ joblib==0.13.2
 wget==3.2
 requests==2.22.0
 Werkzeug==0.16.1
-flask==1.1.1
+flask==2.3.2
 flask_restplus==0.13.0
